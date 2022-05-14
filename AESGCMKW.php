@@ -19,6 +19,10 @@ abstract class AESGCMKW implements KeyWrapping
         return ['oct'];
     }
 
+    /**
+     * @param array<string, mixed> $completeHeader
+     * @param array<string, mixed> $additionalHeader
+     */
     public function wrapKey(JWK $key, string $cek, array $completeHeader, array &$additionalHeader): string
     {
         $kek = $this->getKey($key);
@@ -36,6 +40,9 @@ abstract class AESGCMKW implements KeyWrapping
         return $encrypted_cek;
     }
 
+    /**
+     * @param array<string, mixed> $completeHeader
+     */
     public function unwrapKey(JWK $key, string $encrypted_cek, array $completeHeader): string
     {
         $kek = $this->getKey($key);
